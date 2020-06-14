@@ -58,7 +58,7 @@ class Student < InteractiveRecord
     DB[:conn].execute(sql)
   end
   
-  def self.find_by(name:, album:)
+  def self.find_by
     song = DB[:conn].execute("SELECT * FROM songs WHERE name = ? AND album = ?", name, album)
     if !song.empty?
       song_data = song[0]
