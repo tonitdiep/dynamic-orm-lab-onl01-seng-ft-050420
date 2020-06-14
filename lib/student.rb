@@ -58,15 +58,15 @@ class Student < InteractiveRecord
     DB[:conn].execute(sql)
   end
   
-  def self.find_by(name:, album:)
-    song = DB[:conn].execute("SELECT * FROM songs WHERE name = ? AND album = ?", name, album)
-    if !song.empty?
-      song_data = song[0]
-      song = self.new_from_db(song_data)
+  def self.find_by(name:, grade:)
+    student = DB[:conn].execute("SELECT * FROM students WHERE name = ? AND grade = ?", name, album)
+    if !student.empty?
+      student_data = song[0]
+      student = self.new_from_db(student_data)
       # song = Song.new(song_data[0], song_data[1], song_data[2])
     else
-      song = self.create(name: name, album: album)
+      student = self.create(name: name, grade: grade)
     end
-    song
+    student
   end
 end
