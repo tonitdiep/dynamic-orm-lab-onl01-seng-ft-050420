@@ -60,7 +60,7 @@ class Student < InteractiveRecord
   
   def self.find_by(attributes)
     attributes.map do |key, value|
-      sql = "SELECT * FROM #{self.table_name} WHERE name = ?"
+      sql = "SELECT * FROM #{self.table_name} WHERE #{key} = ?"
       DB[:conn].execute(sql, value)
     end.first
     # student = DB[:conn].execute("SELECT * FROM students WHERE name = ? AND grade = ?", name, grade)
