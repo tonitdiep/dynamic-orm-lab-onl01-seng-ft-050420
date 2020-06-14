@@ -58,7 +58,7 @@ class Student < InteractiveRecord
     DB[:conn].execute(sql)
   end
   
-  def self.find_by(name:, grade:)
+  def self.find_by(attributes)
     student = DB[:conn].execute("SELECT * FROM students WHERE name = ? AND grade = ?", name, grade)
     # if !student.empty?
     #   student_data = student[0]
