@@ -59,7 +59,7 @@ class Student < InteractiveRecord
   end
   
   def self.find_by(name:, grade:)
-    student = DB[:conn].execute("SELECT * FROM students WHERE name = ? AND grade = ?", name, album)
+    student = DB[:conn].execute("SELECT * FROM students WHERE name = ? AND grade = ?", name, grade)
     if !student.empty?
       student_data = song[0]
       student = self.new_from_db(student_data)
