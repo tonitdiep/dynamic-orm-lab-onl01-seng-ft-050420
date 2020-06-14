@@ -59,7 +59,12 @@ class Student < InteractiveRecord
   end
   
   def self.find_by(attributes)
-    student = DB[:conn].execute("SELECT * FROM students WHERE name = ? AND grade = ?", name, grade)
+    
+       attributes.map do |key, value|
+            sql = "SELECT * FROM #{self.table_name} WHERE #{key} = ?"
+            DB[:conn].execute(sql, value)
+        end.first
+    # student = DB[:conn].execute("SELECT * FROM students WHERE name = ? AND grade = ?", name, grade)
     # if !student.empty?
     #   student_data = student[0]
     #   # student = self.new_from_db(student_data)
